@@ -1,11 +1,44 @@
 package application;
 
-public interface Model {
-	public void setIndependent(int newIndependent);
+public class Model implements ModelInterface {
+
+	private int numCredits;
 	
-	public int getIndependent();
+	private String yearInSchool;
 	
-	public String getDependent();
+	public Model() {
+		setNumCredits(0);
+	}
 	
+	public Model(int newNumCredits) {
+		setNumCredits(newNumCredits);
+	}
 	
+	@Override
+	public void setNumCredits(int newNumCredits) {
+		numCredits = newNumCredits;
+		if (numCredits < 0)
+			yearInSchool = "Unenrolled";
+		else if (numCredits <= 30)
+			yearInSchool = "Freshman";
+		else if (numCredits <= 60)
+			yearInSchool = "Sophmore";
+		else if (numCredits <= 90)
+			yearInSchool = "Junior";
+		else if (numCredits <= 122)
+			yearInSchool = "Senior";
+		else
+			yearInSchool = "Supersenior";
+	}
+
+	@Override
+	public int getNumCredits() {
+		return numCredits;
+	}
+
+	@Override
+	public String getYearInSchool() {
+		return yearInSchool;
+	}
+
 }
